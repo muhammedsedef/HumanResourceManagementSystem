@@ -1,10 +1,13 @@
-package com.hrms.humanresourcemanagementsystem.api.controller;
+package com.hrms.humanresourcemanagementsystem.api.controllers;
 
 
 import com.hrms.humanresourcemanagementsystem.business.abstracts.JobPositonService;
-import com.hrms.humanresourcemanagementsystem.model.concretes.JobPositions;
+import com.hrms.humanresourcemanagementsystem.core.utilities.results.DataResult;
+import com.hrms.humanresourcemanagementsystem.core.utilities.results.Result;
+import com.hrms.humanresourcemanagementsystem.model.concretes.JobPosition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,7 +25,14 @@ public class JobPositionController {
     }
 
     @GetMapping("/getAll")
-    public List<JobPositions> getAll() {
+    public DataResult<List<JobPosition>> getAll() {
         return jobPositonService.getAll();
     }
+
+    @PostMapping
+    public Result add(JobPosition jobPosition) {
+        return jobPositonService.add(jobPosition);
+    }
+
+
 }
